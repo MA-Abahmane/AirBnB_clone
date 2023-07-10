@@ -12,14 +12,18 @@ class console(cmd.Cmd):
     # change command prompt
     prompt = '(AIR_bnb)>> '
 
-    def do_exit(self, args):
+    def do_quit(self, args):
         """ exit console """
+        return True
+    
+    def do_EOF(self, args):
+        """ End Of File """
+        print()
         return True
     
     def do_creat(self, args):
         """ creat User """
         print("User " + args + " created successfully")
-
 
     def do_print(self, args):
         """ print 7 times """
@@ -38,6 +42,8 @@ class console(cmd.Cmd):
                 parse if the command line has more than one arguments
                 if not, run command
         """
+        Id = ''
+        Other = ''
         args = cmdLine.split('.', 1)
         if (len(args) == 2):
             Class = args[0] #  given class name acquired
@@ -49,6 +55,7 @@ class console(cmd.Cmd):
                     Id = args[0] # class id acquired
                     Other = args[1] # other additional arguments
             parsed_cmdL = Cmnd + ' ' + Class + ' ' + Id + ' ' + Other
+            print(parsed_cmdL)
             return parsed_cmdL
         else:
             return cmdLine
