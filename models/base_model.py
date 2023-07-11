@@ -1,6 +1,9 @@
 #!/usr/bin/python3
+
+
 import uuid
 from datetime import datetime
+import models
 
 
 class BaseModel:
@@ -36,9 +39,12 @@ class BaseModel:
             self.id = str(uuid.uuid4()) # assign a unique ID to instance when created
             self.created_at = datetime.now() # creation date of instance
             self.updated_at = datetime.now() # updated time of instance
+            # if user dosent exist, set new user account
+            models.storage.new(self)
 
     def save(self):
         """ updates 'updated_at' with the current datetime """
+        models.storage.save()
         self.updated_at = datetime.now()
 
     def to_dict(self):

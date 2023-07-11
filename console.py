@@ -6,29 +6,24 @@ import sys
 from models import *
 
 
-class console(cmd.Cmd):
+class HBNBCommand(cmd.Cmd):
     """ class consol """
 
     # change command prompt
-    prompt = '(AIR_bnb)>> '
+    prompt = '(hbnb) '
 
     def do_quit(self, args):
-        """ exit console """
+        """ quit: used to exit console """
         return True
     
     def do_EOF(self, args):
-        """ End Of File """
+        """ EOF: used to mark End Of File """
         print()
         return True
     
     def do_creat(self, args):
-        """ creat User """
+        """ creat: used to creat user accounts"""
         print("User " + args + " created successfully")
-
-    def do_print(self, args):
-        """ print 7 times """
-        print(f"{args}\t" * 7)
-
 
     def precmd(self, cmdLine):
         """ 
@@ -38,29 +33,20 @@ class console(cmd.Cmd):
             Return:
                 command line ready to be executed
             Description:
-                check in what mode the command line is inputed (consol or piped) 
-                parse if the command line has more than one arguments
-                if not, run command
+                collect 'class name', 'command', 'id', and 'additional arguments '
+                from the given command line after parcing
         """
-        Id = ''
-        Other = ''
-        args = cmdLine.split('.', 1)
-        if (len(args) == 2):
-            Class = args[0] #  given class name acquired
-            args = args[1].split('(', 1)
-            Cmnd = args[0] #  user command acquired
-            if (len(args) == 2):
-                args = args[1].split(')', 1)
-                if (len(args) == 2):
-                    Id = args[0] # class id acquired
-                    Other = args[1] # other additional arguments
-            parsed_cmdL = Cmnd + ' ' + Class + ' ' + Id + ' ' + Other
-            print(parsed_cmdL)
-            return parsed_cmdL
+
+        if ('.' in cmdLine):
+            line = cmdLine.replace('.', ' ').replace('(', ' ').replace(')', ' ')
+            line = line.split(' ')
+            line = f"{line[1]} {line[0]} {line[2]} {line[3]}"
+            #print("Command Line: " + line)
+            return line
         else:
             return cmdLine
 
 
 if __name__ == '__main__':
     """ ∞ loop """
-    console().cmdloop() # type: ignore
+    HBNBCommand().cmdloop()
