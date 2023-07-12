@@ -23,3 +23,20 @@ Test codes:
         else:
             return cmdLine 
 """
+
+
+class my:
+
+    n = 100
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def to_dict(self):
+        dic = self.__dict__.copy()
+        return (dic)
+
+m1 = my("Any", "20")
+
+print(m1.to_dict())
