@@ -1,7 +1,6 @@
 #!/usr/bin/python3
-
-""" 
-    This module contains a class that is used to manipulate Data and save/load 
+"""
+    This module contains a class that is used to manipulate Data and save/load
     it using a JSON file
 """
 
@@ -9,27 +8,27 @@ import json as js
 from os import path
 import models
 from models.base_model import *
+from models.user import *
 
 
 class FileStorage:
     """
         class FileStorage serializes instances to a JSON file
         and deserializes JSON file to instances:
-    """
-    """ 
+
         Private class attributes:
         __file_path: used to store the name of the JSON file
         __onjects: a dictionary used to store created objects
     """
+
     __file_path = 'file.json'
     __objects = {}
-
 
     def __init__(self):
         """ Consturtor """
 
     def all(self):
-        """ 
+        """
             returns the dictionary '__objects' containing all created objects
         """
         return self.__objects
@@ -46,7 +45,7 @@ class FileStorage:
         """ serializes __objects to the JSON file (path: __file_path) """
         json_obj = {}
 
-        """ 
+        """
             after we created the emply dictionary 'json_obj' we will now
             proceed to updating it with all key/value from __objects, then
             we serializes our dictionary and save it to our JSON file
@@ -71,16 +70,16 @@ class FileStorage:
         with open(self.__file_path, 'r', encoding="utf-8") as fl:
             # load and deserializes file contents
             de_jsoned_dict = js.load(fl)
-            
+
             # save file keys/values in __objects()
             for key, val in de_jsoned_dict.items():
-                """ 
+                """
                 The expression value["__class__"] creates an instance with all the
                 values passed as instance methods then returns the name of the class
-                of the object. The eval() function then evaluates this string as a 
+                of the object. The eval() function then evaluates this string as a
                 reference to the class, and the **value syntax passes the value dictionary
-                as keyword arguments to the class constructor. This means that the class 
-                will be created with the same attributes as the value dictionary. 
+                as keyword arguments to the class constructor. This means that the class
+                will be created with the same attributes as the value dictionary.
                 """
                 atrbt_val = eval(val["__class__"])(**val)
                 # save object in '__objects'

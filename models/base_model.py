@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-
+""" 
+    This module contains the basemodel class wish contains all the
+    necessary functionalitys we will be using to make user accounts
+"""
 
 import uuid
 from datetime import datetime
@@ -43,7 +46,7 @@ class BaseModel:
             self.created_at = datetime.now()
             # updated time of instance
             self.updated_at = datetime.now()
-            # if user dosent exist, set new user account
+            # save Object (instance)
             models.storage.new(self)
 
     def save(self):
