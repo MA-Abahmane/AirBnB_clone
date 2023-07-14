@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" 
+"""
     This module contains the basemodel class wish contains all the
     necessary functionalitys we will be using to make user accounts
 """
@@ -10,7 +10,10 @@ import models
 
 
 class BaseModel:
-    """ class BaseModel defines all common attributes/methods for other classes: """
+    """
+        class BaseModel defines all common attributes/methods
+        for other classes
+    """
 
     def __str__(self):
         """ Class print """
@@ -31,7 +34,8 @@ class BaseModel:
                 if (key == 'created_at'):
                     val = datetime.strptime(val, '%Y-%m-%dT%H:%M:%S.%f')
                 if (key == 'updated_at'):
-                    val = datetime.strptime(val, '%Y-%m-%dT%H:%M:%S.%f') # type: ignore
+                    val = datetime.strptime(val, '%Y-%m-%dT%H:%M:%S.%f')
+
                 """
                     if key is not '__class__'; set 'key' as a public instance
                     attribute name and 'val' as its initial value
@@ -50,7 +54,7 @@ class BaseModel:
             models.storage.new(self)
 
     def save(self):
-        """ 
+        """
             updates 'updated_at' with the current datetime
             after updating account to JSON file using 'storage.save()'
         """
@@ -58,11 +62,14 @@ class BaseModel:
         models.storage.save()
 
     def to_dict(self):
-        """ returns a dictionary of all keys/values of set instance attributes """
         """
-            '__dict__': return a dictionary of all instance attributes of an object
-            'created_at' and 'updated_at' are converted to string object in ISO format
-            [YYYY-MM-DD HH:MM:SS.mmmmmm] using 'isoformat()':
+            returns a dictionary of all keys/values of set
+            instance attributes
+
+            '__dict__': return a dictionary of all instance attributes of
+            an object
+            'created_at' and 'updated_at' are converted to string object in
+            ISO format [YYYY-MM-DD HH:MM:SS.mmmmmm] using 'isoformat()':
         """
         attributes_dict = self.__dict__.copy()
         attributes_dict['__class__'] = self.__class__.__name__

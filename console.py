@@ -7,6 +7,11 @@ import shlex as sx
 import models
 from models.base_model import *
 from models.user import *
+from models.state import *
+from models.city import *
+from models.amenity import *
+from models.place import *
+from models.review import *
 
 
 class HBNBCommand(cmd.Cmd):
@@ -17,7 +22,13 @@ class HBNBCommand(cmd.Cmd):
 
     # all classes we have
     class_list = {'BaseModel': BaseModel,
-                  'User': User}
+                  'User': User,
+                  'State': State,
+                  'City': City,
+                  'Amenity': Amenity,
+                  'Place': Place,
+                  'Review': Review
+                  }
 
     def emptyline(self):
         """ incase of emptyline input """
@@ -191,6 +202,19 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** class doesn't exist **")
 
+    def do_count(self, args):
+        """
+            count: used to retrieve the number of instances of a class
+            Usage: <class name>.count() or count <class name>
+        """
+        count = 0
+        obj_dict = models.storage.all()
+        for key in obj_dict.keys():
+            Skey = key.split('.')
+            if (Skey[0] == args):
+                count += 1
+        print(count)
+
     def precmd(self, cmdLine):
         """
             [!] This function is ran just before the command line is intepreted
@@ -202,13 +226,13 @@ class HBNBCommand(cmd.Cmd):
                 collect 'class name', 'command', 'id', and 'additional
                 arguments' from the given command line after parcing
         """
-
-        if ('.' in cmdLine):
+        Llen = sx.split(cmdLine)
+        if ('.' in cmdLine and len(Llen) == 1):
             line = cmdLine.replace('.', ' ').replace('(', ' ').\
                 replace(')', ' ')
             line = line.split(' ')
             line = f"{line[1]} {line[0]} {line[2]} {line[3]}"
-            # print("Command Line: " + line)
+            print("Command Line: " + line)
             return line
         else:
             return cmdLine

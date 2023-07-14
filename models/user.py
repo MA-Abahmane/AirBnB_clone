@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" 
+"""
     This module contains the class 'User' that inherits from BaseModel
 """
 

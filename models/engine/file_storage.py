@@ -9,6 +9,11 @@ from os import path
 import models
 from models.base_model import *
 from models.user import *
+from models.state import *
+from models.city import *
+from models.amenity import *
+from models.place import *
+from models.review import *
 
 
 class FileStorage:
@@ -38,8 +43,8 @@ class FileStorage:
         Id = str(obj.id)
         # The object key consists of its class name and id value
         key = f"{obj.__class__.__name__}.{Id}"
-        # set the key (<obj class name>.id) as the key of the newly created object
-        self.__objects[key] =  obj
+        # set the key (<obj class name>.id) as key of the newly created object
+        self.__objects[key] = obj
 
     def save(self):
         """ serializes __objects to the JSON file (path: __file_path) """
@@ -74,12 +79,14 @@ class FileStorage:
             # save file keys/values in __objects()
             for key, val in de_jsoned_dict.items():
                 """
-                The expression value["__class__"] creates an instance with all the
-                values passed as instance methods then returns the name of the class
-                of the object. The eval() function then evaluates this string as a
-                reference to the class, and the **value syntax passes the value dictionary
-                as keyword arguments to the class constructor. This means that the class
-                will be created with the same attributes as the value dictionary.
+                    The expression value["__class__"] creates an instance with
+                    all the values passed as instance attributes then returns
+                    the created instance object. The 'eval()' function then
+                    evaluates this string as a reference to the class, and the
+                    **value syntax passes the value dictionary as keyword argu
+                    -ments to the class constructor. This means that the class
+                    will be created with the same attributes as the value
+                    dictionary.
                 """
                 atrbt_val = eval(val["__class__"])(**val)
                 # save object in '__objects'
