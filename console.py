@@ -232,7 +232,7 @@ class HBNBCommand(cmd.Cmd):
                 replace(')', ' ')
             line = line.split(' ')
             line = f"{line[1]} {line[0]} {line[2]} {line[3]}"
-            print("Command Line: " + line)
+            # print("Command Line: " + line)
             return line
         else:
             return cmdLine
