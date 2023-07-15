@@ -48,8 +48,5 @@ class UserTest(unittest.TestCase):
         self.assertNotEqual(time1, time2)
 
 
-
-
-
 if __name__ == '__main__':
     unittest.main()
