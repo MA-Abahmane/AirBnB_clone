@@ -2,7 +2,6 @@
 """ user test file """
 
 import unittest
-import pep8
 import models
 from models.base_model import *
 from models.user import *
@@ -49,10 +48,7 @@ class UserTest(unittest.TestCase):
 
         self.assertNotEqual(time1, time2)
 
-        # test for pip mode
-        style = pep8.StyleGuide(quiet=True)
-        p = style.check_files(['models/engine/file_storage.py'])
-        self.assertEqual(p.total_errors, 0, "fix pep8")
+        
 
 
 if __name__ == '__main__':

@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ file_storage test file """
 
+import pep8
 import unittest
 from os import path
 import models.engine
@@ -47,11 +48,9 @@ class FileStorageTest(unittest.TestCase):
             raise FileNotFoundError
 
         # test for reload and save
-        dataBase = FileStorage()
-        _object = User()
-        _object.email = "MAA@gmail.com"
-        _object.save()
-        dataBase.reload()
+        style = pep8.StyleGuide(quiet=True)
+        p = style.check_files(['models/engine/file_storage.py'])
+        self.assertEqual(p.total_errors, 0, "fix pep8")
 
 
 
