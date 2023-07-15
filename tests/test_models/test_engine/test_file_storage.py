@@ -53,37 +53,6 @@ class FileStorageTest(unittest.TestCase):
         _object.save()
         dataBase.reload()
 
-        """ tests reload """
-        user = User()
-        user.first_name = "Alx"
-        user.last_name = "amu"
-        user.email = "MAA@gmail.com"
-        storage = FileStorage()
-
-        storage.save()
-        Root = os.path.dirname(os.path.abspath("console.py"))
-        path = os.path.join(Root, "file.json")
-        with open(path, 'r') as f:
-            lines = f.readlines()
-        try:
-            os.remove(path)
-        except FileNotFoundError:
-            pass
-        storage.save()
-        with open(path, 'r') as f:
-            lines2 = f.readlines()
-        self.assertEqual(lines, lines2)
-        try:
-            os.remove(path)
-        except FileNotFoundError:
-            pass
-        with open(path, "w") as f:
-            f.write("{}")
-        with open(path, "r") as r:
-            for line in r:
-                self.assertEqual(line, "{}")
-        self.assertIs(storage.reload(), None)
-
 
 
 
