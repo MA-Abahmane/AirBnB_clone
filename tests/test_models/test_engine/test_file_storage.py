@@ -39,14 +39,11 @@ class FileStorageTest(unittest.TestCase):
         time2 = _object.updated_at
 
         self.assertNotEqual(time1, time2)
-        self.assertEqual(time1, time1)
 
         # check is file storage exists
         Fname = "file.json"
         if (not path.isfile(Fname)):
             raise FileNotFoundError
-
-
 
         # test for reload and save
         dataBase = FileStorage()
@@ -54,6 +51,16 @@ class FileStorageTest(unittest.TestCase):
         _object.email = "MAA@gmail.com"
         _object.save()
         dataBase.reload()
+
+        """test when new is created"""
+        dataBase = FileStorage()
+        obj = dataBase.all()
+        user = User()
+        user.id = 123455
+        user.name = "Aiko"
+        dataBase.new(user)
+        key = user.__class__.__name__ + "." + str(user.id)
+        self.assertIsNotNone(obj[key])
 
 
 
