@@ -55,9 +55,9 @@ class FileStorageTest(unittest.TestCase):
 
         """ tests reload """
         user = User()
-        user.first_name = "Pica"
-        user.last_name = "Chu"
-        user.email = "1234@yahoo.com"
+        user.first_name = "Alx"
+        user.last_name = "amu"
+        user.email = "MAA@gmail.com"
         storage = FileStorage()
 
         storage.save()
