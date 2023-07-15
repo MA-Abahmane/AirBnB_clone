@@ -11,7 +11,7 @@ class UserTest(unittest.TestCase):
 
     def test_User(self):
         """ testing the class BaseModel """
-        
+
         # test if instance belongs to its class
         _object = User()
 
@@ -49,7 +49,7 @@ class UserTest(unittest.TestCase):
 
         # check is email and password first_name last_name are strings
         _object = User()
-        
+
         self.assertEqual(type(_object.email), str)
         self.assertEqual(type(_object.password), str)
         self.assertEqual(type(_object.first_name), str)

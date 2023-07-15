@@ -11,7 +11,7 @@ class BaseModelTest(unittest.TestCase):
 
     def test_BaseModel(self):
         """ testing the class BaseModel """
-        
+
         # test if instance belongs to its class
         _object = BaseModel()
 
@@ -46,9 +46,6 @@ class BaseModelTest(unittest.TestCase):
         time2 = _object.updated_at
 
         self.assertNotEqual(time1, time2)
-
-
-
 
 
 if __name__ == '__main__':

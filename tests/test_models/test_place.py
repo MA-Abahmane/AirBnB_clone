@@ -11,7 +11,7 @@ class TestPlace(unittest.TestCase):
 
     def test_Place(self):
         """ testing the class BaseModel """
-        
+
         # test if instance belongs to its class
         _object = Place()
 
@@ -49,7 +49,7 @@ class TestPlace(unittest.TestCase):
 
         # check is email and password first_name last_name are strings
         _object = Place()
-        
+
         self.assertEqual(type(_object.city_id), str)
         self.assertEqual(type(_object.user_id), str)
         self.assertEqual(type(_object.name), str)

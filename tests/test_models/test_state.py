@@ -11,7 +11,7 @@ class StateTest(unittest.TestCase):
 
     def test_User(self):
         """ testing the class BaseModel """
-        
+
         # test if instance belongs to its class
         _object = State()
 
@@ -49,7 +49,7 @@ class StateTest(unittest.TestCase):
 
         # check is email and password first_name last_name are strings
         _object = State()
-        
+
         self.assertEqual(type(_object.name), str)
         self.assertIsNotNone(_object.name)
 

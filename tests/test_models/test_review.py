@@ -11,7 +11,7 @@ class TestReview(unittest.TestCase):
 
     def test_Review(self):
         """ testing the class BaseModel """
-        
+
         # test if instance belongs to its class
         _object = Review()
 
@@ -49,7 +49,7 @@ class TestReview(unittest.TestCase):
 
         # check is email and password first_name last_name are strings
         _object = Review()
-        
+
         self.assertEqual(type(_object.place_id), str)
         self.assertEqual(type(_object.user_id), str)
         self.assertEqual(type(_object.text), str)
@@ -57,6 +57,7 @@ class TestReview(unittest.TestCase):
         self.assertIsNotNone(_object.place_id)
         self.assertIsNotNone(_object.user_id)
         self.assertIsNotNone(_object.text)
+
 
 if __name__ == '__main__':
     unittest.main()

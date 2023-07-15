@@ -11,7 +11,7 @@ class TestAmenity(unittest.TestCase):
 
     def test_Amenity(self):
         """ testing the class BaseModel """
-        
+
         # test if instance belongs to its class
         _object = Amenity()
 
@@ -49,7 +49,7 @@ class TestAmenity(unittest.TestCase):
 
         # check is email and password first_name last_name are strings
         _object = Amenity()
-        
+
         self.assertEqual(type(_object.name), str)
         self.assertIsNotNone(_object.name)
 

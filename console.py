@@ -233,23 +233,23 @@ class HBNBCommand(cmd.Cmd):
             line = line.split(' ')
             if (line[1] == 'update'):
                 line = cmdLine.replace('.', ' ').replace('(', ' ').\
-                replace(', ', ' ').replace(',', ' ').replace(')', ' ')
+                    replace(', ', ' ').replace(',', ' ').replace(')', ' ')
 
                 line = line.split(' ')
                 line = f"{line[1]} {line[0]} {line[2]} {line[3]} {line[4]}"
-                print (" Update line: " + line)
+                # print(" Update line: " + line)
                 return line
 
         # parse other special commands
         Llen = sx.split(cmdLine)
         if ('.' in cmdLine and len(Llen) == 1):
-                line = cmdLine.replace('.', ' ').replace('(', ' ').\
-                    replace(')', ' ')
+            line = cmdLine.replace('.', ' ').replace('(', ' ').\
+                replace(')', ' ')
 
-                line = line.split(' ')
-                line = f"{line[1]} {line[0]} {line[2]} {line[3]}"
-                print("Command Line: " + line)
-                return line
+            line = line.split(' ')
+            line = f"{line[1]} {line[0]} {line[2]} {line[3]}"
+            # print("Command Line: " + line)
+            return line
 
         return cmdLine
 

@@ -11,7 +11,7 @@ class TestCity(unittest.TestCase):
 
     def test_City(self):
         """ testing the class BaseModel """
-        
+
         # test if instance belongs to its class
         _object = City()
 
@@ -49,7 +49,7 @@ class TestCity(unittest.TestCase):
 
         # check is email and password first_name last_name are strings
         _object = City()
-        
+
         self.assertEqual(type(_object.state_id), str)
         self.assertEqual(type(_object.name), str)
 
