@@ -1,8 +1,8 @@
+#!/usr/bin/python3
 """ file_storage test file """
 
 import unittest
-import os
-from os import path as p
+from os import path
 import models.engine
 from models.engine.file_storage import *
 
@@ -43,7 +43,7 @@ class FileStorageTest(unittest.TestCase):
 
         # check is file storage exists
         Fname = "file.json"
-        if (not p.isfile(Fname)):
+        if (not path.isfile(Fname)):
             raise FileNotFoundError
 
         # test for reload and save
