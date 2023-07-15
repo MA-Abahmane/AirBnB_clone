@@ -47,13 +47,10 @@ class FileStorageTest(unittest.TestCase):
         if (not path.isfile(Fname)):
             raise FileNotFoundError
 
-        # test for reload and save
-        style = pep8.StyleGuide(quiet=True)
-        p = style.check_files(['models/engine/file_storage.py'])
+        # check if file is in pep style
+        pep_style = pep8.StyleGuide(quiet=True)
+        p = pep_style.check_files(['models/engine/file_storage.py'])
         self.assertEqual(p.total_errors, 0, "fix pep8")
-
-
-
 
 
 if __name__ == '__main__':

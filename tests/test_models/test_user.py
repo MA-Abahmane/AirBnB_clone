@@ -3,11 +3,10 @@
 
 import unittest
 import models
-from models.base_model import *
 from models.user import *
 
 
-class UserTest(unittest.TestCase):
+class TestUser(unittest.TestCase):
     """ User testing class """
 
     def test_User(self):
@@ -48,7 +47,18 @@ class UserTest(unittest.TestCase):
 
         self.assertNotEqual(time1, time2)
 
+        # check is email and password first_name last_name are strings
+        _object = User()
         
+        self.assertEqual(type(_object.email), str)
+        self.assertEqual(type(_object.password), str)
+        self.assertEqual(type(_object.first_name), str)
+        self.assertEqual(type(_object.last_name), str)
+
+        self.assertIsNotNone(_object.email)
+        self.assertIsNotNone(_object.password)
+        self.assertIsNotNone(_object.first_name)
+        self.assertIsNotNone(_object.last_name)
 
 
 if __name__ == '__main__':
