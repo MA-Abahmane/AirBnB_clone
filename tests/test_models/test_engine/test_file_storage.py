@@ -1,7 +1,8 @@
 """ file_storage test file """
 
 import unittest
-from os import path
+import os
+from os import path as p
 import models.engine
 from models.engine.file_storage import *
 
@@ -42,7 +43,7 @@ class FileStorageTest(unittest.TestCase):
 
         # check is file storage exists
         Fname = "file.json"
-        if (not path.isfile(Fname)):
+        if (not p.isfile(Fname)):
             raise FileNotFoundError
 
         # test for reload and save
@@ -52,15 +53,36 @@ class FileStorageTest(unittest.TestCase):
         _object.save()
         dataBase.reload()
 
-        """test when new is created"""
-        dataBase = FileStorage()
-        obj = dataBase.all()
+        """ tests reload """
         user = User()
-        user.id = 123455
-        user.name = "Aiko"
-        dataBase.new(user)
-        key = user.__class__.__name__ + "." + str(user.id)
-        self.assertIsNotNone(obj[key])
+        user.first_name = "Pica"
+        user.last_name = "Chu"
+        user.email = "1234@yahoo.com"
+        storage = FileStorage()
+
+        storage.save()
+        Root = os.path.dirname(os.path.abspath("console.py"))
+        path = os.path.join(Root, "file.json")
+        with open(path, 'r') as f:
+            lines = f.readlines()
+        try:
+            os.remove(path)
+        except FileNotFoundError:
+            pass
+        storage.save()
+        with open(path, 'r') as f:
+            lines2 = f.readlines()
+        self.assertEqual(lines, lines2)
+        try:
+            os.remove(path)
+        except FileNotFoundError:
+            pass
+        with open(path, "w") as f:
+            f.write("{}")
+        with open(path, "r") as r:
+            for line in r:
+                self.assertEqual(line, "{}")
+        self.assertIs(storage.reload(), None)
 
 
 
