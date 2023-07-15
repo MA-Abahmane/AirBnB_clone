@@ -1,6 +1,7 @@
 """ file_storage test file """
 
 import unittest
+from os import path
 import models.engine
 from models.engine.file_storage import *
 
@@ -38,6 +39,20 @@ class FileStorageTest(unittest.TestCase):
         time2 = _object.updated_at
 
         self.assertNotEqual(time1, time2)
+
+        # check is file storage exists
+        Fname = "file.json"
+        if (not path.isfile(Fname)):
+            raise FileNotFoundError
+
+
+
+        # test for reload and save
+        dataBase = FileStorage()
+        _object = User()
+        _object.email = "MAA@gmail.com"
+        _object.save()
+        dataBase.reload()
 
 
 
