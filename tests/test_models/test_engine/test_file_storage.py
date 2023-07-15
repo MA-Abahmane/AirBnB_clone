@@ -18,7 +18,7 @@ class FileStorageTest(unittest.TestCase):
         self.assertIsInstance(_object, FileStorage)
 
         # test if object dictionary exists and is not none
-        _object = FileStorage()
+        dataBase = FileStorage()
         objsD = _object.all()
 
         self.assertEqual(type(objsD), dict)
@@ -39,6 +39,7 @@ class FileStorageTest(unittest.TestCase):
         time2 = _object.updated_at
 
         self.assertNotEqual(time1, time2)
+        self.assertEqual(time1, time1)
 
         # check is file storage exists
         Fname = "file.json"
