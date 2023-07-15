@@ -226,16 +226,32 @@ class HBNBCommand(cmd.Cmd):
                 collect 'class name', 'command', 'id', and 'additional
                 arguments' from the given command line after parcing
         """
+        # this is 'update's special command parser, input format:
+        # <class name>.update(<id>, <attribute name>, <attribute value>).
+        if ('.' in cmdLine):
+            line = cmdLine.replace('.', ' ').replace('(', ' ')
+            line = line.split(' ')
+            if (line[1] == 'update'):
+                line = cmdLine.replace('.', ' ').replace('(', ' ').\
+                replace(', ', ' ').replace(',', ' ').replace(')', ' ')
+
+                line = line.split(' ')
+                line = f"{line[1]} {line[0]} {line[2]} {line[3]} {line[4]}"
+                print (" Update line: " + line)
+                return line
+
+        # parse other special commands
         Llen = sx.split(cmdLine)
         if ('.' in cmdLine and len(Llen) == 1):
-            line = cmdLine.replace('.', ' ').replace('(', ' ').\
-                replace(')', ' ')
-            line = line.split(' ')
-            line = f"{line[1]} {line[0]} {line[2]} {line[3]}"
-            # print("Command Line: " + line)
-            return line
-        else:
-            return cmdLine
+                line = cmdLine.replace('.', ' ').replace('(', ' ').\
+                    replace(')', ' ')
+
+                line = line.split(' ')
+                line = f"{line[1]} {line[0]} {line[2]} {line[3]}"
+                print("Command Line: " + line)
+                return line
+
+        return cmdLine
 
 
 if __name__ == '__main__':
